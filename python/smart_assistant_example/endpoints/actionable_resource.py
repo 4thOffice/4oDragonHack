@@ -101,7 +101,7 @@ def actionable_resource_availability():
     if context_id:
         actionable_resource_id = '{}.{}'.format(context_type, context_id)
     else:
-        actionable_resource_id = '{}'.format(context_id)
+        actionable_resource_id = '{}'.format(context_type)
 
     response = {
         '$type': 'ActionableResourceAvailability_20',
