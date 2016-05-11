@@ -28,7 +28,7 @@ def actionable_resource(actionable_resource_id=None):
         else:
             abort(400)
 
-    if context_type == 'ChatStream':
+    if context_type == 'ChatStream'.lower():
         assistant_chat_bubble = 'Hello and welcome on chat stream'
 
         next_step = Action(name='Show me next message', type='ActionNextStep_18', action_type='Positive')
@@ -38,15 +38,15 @@ def actionable_resource(actionable_resource_id=None):
         description_list = [assistant_chat_bubble]
 
         actionable_resource = ActionableResource(description_list, actions)
-    elif context_type == 'StreamListMuted':
+    elif context_type == 'StreamListMuted'.lower():
         abort(404)
-    elif context_type == 'GroupList':
+    elif context_type == 'GroupList'.lower():
         abort(404)
-    elif context_type == 'BoardList':
+    elif context_type == 'BoardList'.lower():
         abort(404)
-    elif context_type == 'Stream':
+    elif context_type == 'Stream'.lower():
         abort(404)
-    elif context_type == 'StreamListImportant':
+    elif context_type == 'StreamListImportant'.lower():
         assistant_chat_bubble = 'Hello and welcome on stream list'
 
         next_step = Action(name='Show me next thing', type='ActionNextStep_18', action_type='Positive')
@@ -56,9 +56,9 @@ def actionable_resource(actionable_resource_id=None):
         description_list = [assistant_chat_bubble]
 
         actionable_resource = ActionableResource(description_list, actions)
-    elif context_type == 'ReminderList':
+    elif context_type == 'ReminderList'.lower():
         abort(404)
-    elif context_type == 'Notification':
+    elif context_type == 'Notification'.lower():
         assistant_chat_bubble = 'Hello this is from push notification'
 
         close_dialog = Action(name='Nice', type='ActionFinishWorkflow_18', action_type='Positive')
@@ -79,21 +79,21 @@ def actionable_resource_availability():
     context_type = args.get('contextType') if 'contextType' in args else None
     context_id = args.get('contextId')
 
-    if context_type == 'ChatStream':
+    if context_type == 'ChatStream'.lower():
         availability_mode = 'Action'
-    elif context_type == 'StreamListMuted':
+    elif context_type == 'StreamListMuted'.lower():
         availability_mode = 'None'
-    elif context_type == 'GroupList':
+    elif context_type == 'GroupList'.lower():
         availability_mode = 'None'
-    elif context_type == 'BoardList':
+    elif context_type == 'BoardList'.lower():
         availability_mode = 'None'
-    elif context_type == 'Stream':
+    elif context_type == 'Stream'.lower():
         availability_mode = 'None'
-    elif context_type == 'StreamListImportant':
+    elif context_type == 'StreamListImportant'.lower():
         availability_mode = 'Action'
-    elif context_type == 'ReminderList':
+    elif context_type == 'ReminderList'.lower():
         availability_mode = 'None'
-    elif context_type == 'Notification':
+    elif context_type == 'Notification'.lower():
         availability_mode = 'None'
     else:
         availability_mode = 'None'
