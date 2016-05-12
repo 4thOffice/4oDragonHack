@@ -36,7 +36,7 @@ class Action:
             '$type': self.type,
             'ActionType': self.action_type,
             'Id': str(uuid.uuid4()),
-            'AssistantEmail': config.SMART_ASSISTANT['LOGIN_ID']
+            'AssistantEmail': config.SMART_ASSISTANT['AUTH']['LOGIN_ID']
         }
 
 
