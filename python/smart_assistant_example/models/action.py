@@ -1,5 +1,6 @@
 import uuid
 
+from python.smart_assistant_example import config
 from python.smart_assistant_example.models.actionable_resource import ActionableResource
 
 
@@ -34,7 +35,8 @@ class Action:
             'Name': self.name,
             '$type': self.type,
             'ActionType': self.action_type,
-            'Id': str(uuid.uuid4())
+            'Id': str(uuid.uuid4()),
+            'AssistantEmail': config.SMART_ASSISTANT['LOGIN_ID']
         }
 
 
