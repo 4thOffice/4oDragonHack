@@ -5,7 +5,7 @@ API_4O = {
 SMART_ASSISTANT = {
     'API': {
         'HOST': '0.0.0.0',
-        'PORT': 4040
+        'PORT': 5001
     },
 
     'AUTH': {
