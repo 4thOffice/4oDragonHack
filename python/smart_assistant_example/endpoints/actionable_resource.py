@@ -38,13 +38,13 @@ def actionable_resource(actionable_resource_id=None):
 
         actionable_resource = ActionableResource(description_list, actions)
     elif context_type == 'StreamListMuted'.lower():
-        abort(204)
+        return '', 204
     elif context_type == 'GroupList'.lower():
-        abort(204)
+        return '', 204
     elif context_type == 'BoardList'.lower():
-        abort(204)
+        return '', 204
     elif context_type == 'Stream'.lower():
-        abort(204)
+        return '', 204
     elif context_type == 'StreamListImportant'.lower():
         assistant_chat_bubble = 'Hello and welcome on stream list'
 
@@ -56,7 +56,7 @@ def actionable_resource(actionable_resource_id=None):
 
         actionable_resource = ActionableResource(description_list, actions)
     elif context_type == 'ReminderList'.lower():
-        abort(204)
+        return '', 204
     elif context_type == 'Notification'.lower():
         assistant_chat_bubble = 'Hello this is from push notification'
 
@@ -65,7 +65,7 @@ def actionable_resource(actionable_resource_id=None):
         description_list = [assistant_chat_bubble]
         actionable_resource = ActionableResource(description_list, actions)
     else:
-        abort(204)
+        return '', 204
 
     response = actionable_resource.to_json()
     return json.dumps(response, default=json_util.default), 200, {'Content-Type': 'application/vnd.4thoffice.actionable.resource-v5.17+json'}
