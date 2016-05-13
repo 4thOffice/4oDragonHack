@@ -1,7 +1,7 @@
 import requests
 
-import python.smart_assistant_example.config as config
-from python.API_4o.authorization import access_token
+import config
+from API_4o.authorization import access_token
 
 
 def get_user_by_email(user_email):

@@ -4,9 +4,8 @@ from bson import json_util
 from flask import Blueprint, request
 from flask import abort
 
-from python.smart_assistant_example import config as config
-from python.smart_assistant_example.models.action import Action
-from python.smart_assistant_example.models.actionable_resource import ActionableResource
+from smart_assistant_example.models.action import Action
+from smart_assistant_example.models.actionable_resource import ActionableResource
 
 bp = Blueprint('actionable_resource', __name__)
 
@@ -19,7 +18,7 @@ def actionable_resource(actionable_resource_id=None):
 
     if actionable_resource_id:
         decoded = actionable_resource_id.split('.')
-        context_type = decoded[1]
+        context_type = decoded[1].lower()
         if len(decoded) == 2:
             context_id = None
         elif len(decoded) == 3:

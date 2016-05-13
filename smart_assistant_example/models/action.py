@@ -1,7 +1,7 @@
 import uuid
 
-from python.smart_assistant_example import config
-from python.smart_assistant_example.models.actionable_resource import ActionableResource
+import config
+from smart_assistant_example.models.actionable_resource import ActionableResource
 
 
 class Action:

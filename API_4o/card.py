@@ -1,8 +1,8 @@
 import json
-
 import requests
-import python.smart_assistant_example.config as config
-from python.API_4o.authorization import access_token
+
+import config
+from API_4o.authorization import access_token
 
 
 def create_card(to_user_email, title, content, attachment_names_ids=None):

@@ -3,7 +3,7 @@ import json
 from bson import json_util
 from flask import Blueprint, request
 
-from python.smart_assistant_example.models.action import action_from_json
+from smart_assistant_example.models.action import action_from_json
 
 bp = Blueprint('action', __name__)
 

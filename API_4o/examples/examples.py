@@ -1,10 +1,10 @@
 import json
 import os
 
-from python.API_4o.card import create_card, post_to_existing_card, post_attachment, get_user_chat_id
-from python.API_4o.get_data import get_stream, get_group, get_user_by_email, get_streams_of_user
-from python.API_4o.push_notification import send_push_notification
-from python.smart_assistant_example.endpoints.user import User
+from API_4o.card import create_card, post_to_existing_card, post_attachment, get_user_chat_id
+from API_4o.get_data import get_user_by_email, get_stream, get_group, get_streams_of_user
+from API_4o.push_notification import send_push_notification
+from smart_assistant_example.endpoints.user import User
 
 
 def example_send_push_notification(user):

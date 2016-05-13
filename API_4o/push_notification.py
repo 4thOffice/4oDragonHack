@@ -1,8 +1,8 @@
 import json
-
 import requests
-import python.smart_assistant_example.config as config
-from python.API_4o.authorization import access_token
+
+import config
+from API_4o.authorization import access_token
 
 
 def send_push_notification(user_id, custom_id, push_notification_message):

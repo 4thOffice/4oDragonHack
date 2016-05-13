@@ -1,6 +1,6 @@
 from flask import Flask
 
-import python.smart_assistant_example.config as config
+import config
 
 app_flask = Flask(__name__)
 
@@ -13,8 +13,9 @@ def f(response):
     return response
 
 
-from python.smart_assistant_example.endpoints import actionable_resource
-from python.smart_assistant_example.endpoints import action
+from smart_assistant_example.endpoints import actionable_resource
+from smart_assistant_example.endpoints import action
+
 app_flask.register_blueprint(actionable_resource.bp)
 app_flask.register_blueprint(action.bp)
 

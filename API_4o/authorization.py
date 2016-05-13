@@ -2,7 +2,7 @@ import json
 
 import requests
 
-import python.smart_assistant_example.config as config
+import config
 
 
 def login():
