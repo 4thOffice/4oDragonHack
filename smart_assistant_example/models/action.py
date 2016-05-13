@@ -6,10 +6,9 @@ from smart_assistant_example.models.actionable_resource import ActionableResourc
 
 class Action:
 
-    def __init__(self, name, type, action_type='Positive'):
+    def __init__(self, name, type):
         self.name = name
         self.type = type
-        self.action_type = action_type
 
     def __call__(self):
         if self.type == 'ActionNextStep_18':
@@ -18,7 +17,7 @@ class Action:
                 'And here is another one!'
             ]
             actions = [
-                Action(name='Great, thanks for now', type='ActionFinishWorkflow_18', action_type='Negative')
+                Action(name='Great, thanks for now', type='ActionFinishWorkflow_18')
             ]
             actionable_resource = ActionableResource(description_list=description_list, actions=actions)
             return actionable_resource
@@ -34,11 +33,11 @@ class Action:
         return {
             'Name': self.name,
             '$type': self.type,
-            'ActionType': self.action_type,
+            'ActionType': 'Positive',
             'Id': str(uuid.uuid4()),
             'AssistantEmail': config.SMART_ASSISTANT['AUTH']['LOGIN_ID']
         }
 
 
 def action_from_json(action_json):
-    return Action(name=action_json['Name'], type=action_json['$type'], action_type=action_json['ActionType'])
+    return Action(name=action_json['Name'], type=action_json['$type'])

@@ -30,8 +30,8 @@ def actionable_resource(actionable_resource_id=None):
     if context_type == 'ChatStream'.lower():
         assistant_chat_bubble = 'Hello and welcome on chat stream'
 
-        next_step = Action(name='Show me next message', type='ActionNextStep_18', action_type='Positive')
-        close_dialog = Action(name='OK, thanks', type='ActionFinishWorkflow_18', action_type='Neutral')
+        next_step = Action(name='Show me next message', type='ActionNextStep_18')
+        close_dialog = Action(name='OK, thanks', type='ActionFinishWorkflow_18')
         actions = [next_step, close_dialog]
 
         description_list = [assistant_chat_bubble]
@@ -48,8 +48,8 @@ def actionable_resource(actionable_resource_id=None):
     elif context_type == 'StreamListImportant'.lower():
         assistant_chat_bubble = 'Hello and welcome on stream list'
 
-        next_step = Action(name='Show me next thing', type='ActionNextStep_18', action_type='Positive')
-        close_dialog = Action(name='Bye', type='ActionFinishWorkflow_18', action_type='Neutral')
+        next_step = Action(name='Show me next thing', type='ActionNextStep_18')
+        close_dialog = Action(name='Bye', type='ActionFinishWorkflow_18')
         actions = [next_step, close_dialog]
 
         description_list = [assistant_chat_bubble]
@@ -60,7 +60,7 @@ def actionable_resource(actionable_resource_id=None):
     elif context_type == 'Notification'.lower():
         assistant_chat_bubble = 'Hello this is from push notification'
 
-        close_dialog = Action(name='Nice', type='ActionFinishWorkflow_18', action_type='Positive')
+        close_dialog = Action(name='Nice', type='ActionFinishWorkflow_18')
         actions = [close_dialog]
         description_list = [assistant_chat_bubble]
         actionable_resource = ActionableResource(description_list, actions)
