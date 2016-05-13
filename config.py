@@ -1,5 +1,5 @@
 API_4O = {
-    'URL': 'http://bcstest.4thoffice.com/sdk'
+    'URL': 'https://sprint-app.4thoffice.com/api'
 }
 
 SMART_ASSISTANT = {
