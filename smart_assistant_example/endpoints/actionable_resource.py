@@ -5,7 +5,7 @@ from flask import Blueprint, request
 from flask import abort
 
 import config
-from smart_assistant_example.models.action import Action
+from smart_assistant_example.models.action import Action, action_from_json
 from smart_assistant_example.models.actionable_resource import ActionableResource
 
 bp = Blueprint('actionable_resource', __name__)
@@ -27,25 +27,7 @@ def actionable_resource(actionable_resource_id=None):
         else:
             abort(400)
 
-    if context_type == 'ChatStream'.lower():
-        assistant_chat_bubble = 'Hello and welcome on chat stream'
-
-        next_step = Action(name='Show me next message', type='ActionNextStep_18')
-        close_dialog = Action(name='OK, thanks', type='ActionFinishWorkflow_18')
-        actions = [next_step, close_dialog]
-
-        description_list = [assistant_chat_bubble]
-
-        actionable_resource = ActionableResource(description_list, actions)
-    elif context_type == 'StreamListMuted'.lower():
-        return '', 204
-    elif context_type == 'GroupList'.lower():
-        return '', 204
-    elif context_type == 'BoardList'.lower():
-        return '', 204
-    elif context_type == 'Stream'.lower():
-        return '', 204
-    elif context_type == 'StreamListImportant'.lower():
+    if context_type == 'StreamListImportant'.lower():
         assistant_chat_bubble = 'Hello and welcome on stream list'
 
         next_step = Action(name='Show me next thing', type='ActionNextStep_18')
@@ -54,15 +36,6 @@ def actionable_resource(actionable_resource_id=None):
 
         description_list = [assistant_chat_bubble]
 
-        actionable_resource = ActionableResource(description_list, actions)
-    elif context_type == 'ReminderList'.lower():
-        return '', 204
-    elif context_type == 'Notification'.lower():
-        assistant_chat_bubble = 'Hello this is from push notification'
-
-        close_dialog = Action(name='Nice', type='ActionFinishWorkflow_18')
-        actions = [close_dialog]
-        description_list = [assistant_chat_bubble]
         actionable_resource = ActionableResource(description_list, actions)
     else:
         return '', 204
@@ -78,22 +51,8 @@ def actionable_resource_availability():
     context_type = args.get('contextType').lower() if 'contextType' in args else None
     context_id = args.get('contextId')
 
-    if context_type == 'ChatStream'.lower():
+    if context_type == 'StreamListImportant'.lower():
         availability_mode = 'Action'
-    elif context_type == 'StreamListMuted'.lower():
-        availability_mode = 'None'
-    elif context_type == 'GroupList'.lower():
-        availability_mode = 'None'
-    elif context_type == 'BoardList'.lower():
-        availability_mode = 'None'
-    elif context_type == 'Stream'.lower():
-        availability_mode = 'None'
-    elif context_type == 'StreamListImportant'.lower():
-        availability_mode = 'Action'
-    elif context_type == 'ReminderList'.lower():
-        availability_mode = 'None'
-    elif context_type == 'Notification'.lower():
-        availability_mode = 'None'
     else:
         availability_mode = 'None'
 
@@ -109,3 +68,15 @@ def actionable_resource_availability():
     }
     return json.dumps(response, default=json_util.default), 200, {'Content-Type': 'application/vnd.4thoffice.actionable.resource.availability-v5.15+json'}
 
+
+@bp.route('/actionableResource', methods=['POST'])
+def set_action():
+    data = json.loads(request.data.decode('utf-8'))
+
+    args = request.args
+    user_id = args.get('userId')
+
+    action = action_from_json(data['ActionList'][0])
+    actionable_resource = action()
+    response = actionable_resource.to_json()
+    return json.dumps(response, default=json_util.default), 200, {'Content-Type': 'application/vnd.4thoffice.actionable.resource-v5.17+json'}

@@ -6,6 +6,14 @@ from API_4o.authorization import access_token
 
 
 def create_card(to_user_email, title, content, attachment_names_ids=None):
+    """
+
+    :param to_user_email:
+    :param title:
+    :param content:
+    :param attachment_names_ids: tuple: (name, id)
+    :return:
+    """
     data = {
             'Name': title,
             'Text': content,

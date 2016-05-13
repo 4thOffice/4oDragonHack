@@ -14,10 +14,7 @@ def f(response):
 
 
 from smart_assistant_example.endpoints import actionable_resource
-from smart_assistant_example.endpoints import action
-
 app_flask.register_blueprint(actionable_resource.bp)
-app_flask.register_blueprint(action.bp)
 
 
 if __name__ == '__main__':
