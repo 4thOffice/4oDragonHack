@@ -17,8 +17,8 @@ def login():
         data=json.dumps({
             "Authentication": {
                 "AuthenticationType": 7,
-                "AuthenticationId": config.SMART_ASSISTANT['AUTH']['LOGIN_ID'],
-                "AuthenticationToken": config.SMART_ASSISTANT['AUTH']['LOGIN_PASS']
+                "AuthenticationId": config.SMART_ASSISTANT['AUTH']['KEY'],
+                "AuthenticationToken": config.SMART_ASSISTANT['AUTH']['SECRET']
             },
             "ClientApplication": {
                 "Type": 0,
