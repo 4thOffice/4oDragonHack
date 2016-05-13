@@ -4,6 +4,7 @@ from bson import json_util
 from flask import Blueprint, request
 from flask import abort
 
+import config
 from smart_assistant_example.models.action import Action
 from smart_assistant_example.models.actionable_resource import ActionableResource
 
