@@ -77,3 +77,60 @@ def get_group(user_id, group_id):
     )
 
     return response
+
+
+def get_cards_of_stream(user_id, stream_id, size=512, offset=0):
+    url = '{}/feed?feedscope=Stream&feedidentity={}&size={}&offset={}'.format(config.API_4O['URL'], stream_id, size, offset)
+
+    headers = {
+        'Accept': 'application/vnd.4thoffice.feed-5.15+json',
+        'Accept-Encoding': 'gzip, deflate',
+        'Accept-Language': 'en-US;q=1',
+        'Authorization': access_token,
+        'X-Impersonate-User': user_id
+    }
+
+    response = requests.get(
+        url,
+        headers=headers
+    )
+
+    return response
+
+
+def get_messages_of_a_card(user_id, card_id, size=512, offset=0):
+    url = '{}/feed?feedscope=Card&feedidentity={}&size={}&offset={}'.format(config.API_4O['URL'], card_id, size, offset)
+
+    headers = {
+        'Accept': 'application/vnd.4thoffice.feed-5.15+json',
+        'Accept-Encoding': 'gzip, deflate',
+        'Accept-Language': 'en-US;q=1',
+        'Authorization': access_token,
+        'X-Impersonate-User': user_id
+    }
+
+    response = requests.get(
+        url,
+        headers=headers
+    )
+
+    return response
+
+
+def get_chat_messages(user_id, chat_id, size=512, offset=0):
+    url = '{}/feed?feedscope=ChatStream&feedidentity={}&size={}&offset={}'.format(config.API_4O['URL'], chat_id, size, offset)
+
+    headers = {
+        'Accept': 'application/vnd.4thoffice.feed-5.15+json',
+        'Accept-Encoding': 'gzip, deflate',
+        'Accept-Language': 'en-US;q=1',
+        'Authorization': access_token,
+        'X-Impersonate-User': user_id
+    }
+
+    response = requests.get(
+        url,
+        headers=headers
+    )
+
+    return response

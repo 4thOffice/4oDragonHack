@@ -3,7 +3,8 @@ import os
 
 from API_4o.card import create_card, post_to_existing_card, post_attachment, get_user_chat_id, create_card_html, \
     post_to_existing_card_html
-from API_4o.get_data import get_user_by_email, get_stream, get_group, get_streams_of_user
+from API_4o.get_data import get_user_by_email, get_stream, get_group, get_streams_of_user, get_cards_of_stream, \
+    get_chat_messages, get_messages_of_a_card
 from API_4o.push_notification import send_push_notification
 from smart_assistant_example.models.user import User
 
@@ -160,27 +161,67 @@ def example_post_to_existing_card_html(user):
     data = json.loads(response.text)
     return data
 
+
+def example_get_cards_of_stream(user):
+    stream_id = example_get_streams_of_user(user)
+    response = get_cards_of_stream(user.id, stream_id)
+
+    if not 200 < response.status_code < 300:
+        response.raise_for_status()
+
+    data = json.loads(response.text)
+    return data
+
+
+def example_get_messages_of_a_card(user):
+    data = example_get_cards_of_stream(user)
+    first_card_id = data['DiscussionListPage']['DiscussionList'][0]['Id']
+    response = get_messages_of_a_card(user.id, first_card_id)
+
+    if not 200 < response.status_code < 300:
+        response.raise_for_status()
+
+    data = json.loads(response.text)
+    return data
+
+
+def example_get_chat_messages(user):
+    response = get_user_chat_id(user.email)
+    data = json.loads(response.text)
+    chat_id = data['Id']
+
+    response = get_chat_messages(user.id, chat_id, size=10)
+
+    if not 200 < response.status_code < 300:
+        response.raise_for_status()
+
+    data = json.loads(response.text)
+    return data
+
+
 if __name__ == '__main__':
     user_email = 'gaspertestz@gmail.com'
     user = User(example_get_user_by_email(user_email))
 
-    example_send_push_notification(user)
+    #example_send_push_notification(user)
 
-    example_post_new_card(user)
+    #example_post_new_card(user)
 
-    example_post_to_existing_card(user)
+    #example_post_to_existing_card(user)
 
-    example_post_with_attachment(user)
+    #example_post_with_attachment(user)
 
-    example_post_chat_message(user)
+    #example_post_chat_message(user)
 
-    stream_id = example_get_streams_of_user(user)
-    example_get_stream(user.id, stream_id)
+    #stream_id = example_get_streams_of_user(user)
+    #example_get_stream(user.id, stream_id)
 
   #  group_id = example_get_groups_of_user(user)
   #  example_get_group(user.id, group_id)
 
-    example_post_to_existing_card_html(user)
+    #example_post_to_existing_card_html(user)
 
-    example_post_new_card_html(user)
+    #example_post_new_card_html(user)
 
+    print(example_get_cards_of_stream(user))
+    print(example_get_messages_of_a_card(user))
