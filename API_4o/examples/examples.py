@@ -1,7 +1,8 @@
 import json
 import os
 
-from API_4o.card import create_card, post_to_existing_card, post_attachment, get_user_chat_id
+from API_4o.card import create_card, post_to_existing_card, post_attachment, get_user_chat_id, create_card_html, \
+    post_to_existing_card_html
 from API_4o.get_data import get_user_by_email, get_stream, get_group, get_streams_of_user
 from API_4o.push_notification import send_push_notification
 from smart_assistant_example.models.user import User
@@ -134,6 +135,31 @@ def example_get_groups_of_user(user):
     return frist_stream_id
 
 
+def example_post_new_card_html(user):
+    title = 'Welcome!'
+    content = '<html><head><title>Title</title></head><body><b>test</b></body></html>'
+
+    response = create_card_html(user.email, title, content)
+
+    if not 200 < response.status_code < 300:
+        response.raise_for_status()
+
+    data = json.loads(response.text)
+    return data
+
+
+def example_post_to_existing_card_html(user):
+    data = example_post_new_card(user)
+    card_id = data['Parent']['Id']
+    content = '<html><head><title>Title</title></head><body><b>test</b></body></html>'
+    response = post_to_existing_card_html(card_id, content)
+
+    if not 200 < response.status_code < 300:
+        response.raise_for_status()
+
+    data = json.loads(response.text)
+    return data
+
 if __name__ == '__main__':
     user_email = 'gaspertestz@gmail.com'
     user = User(example_get_user_by_email(user_email))
@@ -151,5 +177,10 @@ if __name__ == '__main__':
     stream_id = example_get_streams_of_user(user)
     example_get_stream(user.id, stream_id)
 
-    group_id = example_get_groups_of_user(user)
-    example_get_group(user.id, group_id)
+  #  group_id = example_get_groups_of_user(user)
+  #  example_get_group(user.id, group_id)
+
+    example_post_to_existing_card_html(user)
+
+    example_post_new_card_html(user)
+

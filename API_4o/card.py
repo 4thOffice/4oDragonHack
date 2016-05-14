@@ -87,6 +87,61 @@ def post_to_existing_card(card_id, content, attachment_names_ids=None):
     return response
 
 
+def create_card_html(to_user_email, title, html_content):
+    """
+
+    :param to_user_email:
+    :param title:
+    :param html_content:
+    :param attachment_names_ids: tuple: (name, id)
+    :return:
+    """
+
+    url = '{}/post'.format(config.API_4O['URL'])
+    url += '?email=' + to_user_email
+
+    response = requests.post(
+        url=url,
+        headers={
+            'Content-Type': 'text/html',
+            'Accept': 'application/vnd.4thoffice.post-5.15+json',
+            'Accept-Language': 'en-US;q=1',
+            'X-Upload-File-Name': title,
+            'Authorization': access_token
+        },
+        data=html_content
+    )
+
+    return response
+
+
+def post_to_existing_card_html(card_id, html_content):
+    """
+
+    :param to_user_email:
+    :param title:
+    :param html_content:
+    :param attachment_names_ids: tuple: (name, id)
+    :return:
+    """
+
+    url = '{}/post'.format(config.API_4O['URL'])
+    url += '?parentId=' + card_id
+
+    response = requests.post(
+        url=url,
+        headers={
+            'Content-Type': 'text/html',
+            'Accept': 'application/vnd.4thoffice.post-5.15+json',
+            'Accept-Language': 'en-US;q=1',
+            'Authorization': access_token
+        },
+        data=html_content
+    )
+
+    return response
+
+
 def post_attachment(document_name, document_path):
     with open(document_path, 'rb') as file:
         document = file.read()
