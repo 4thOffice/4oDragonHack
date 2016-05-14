@@ -1,5 +1,8 @@
 # 4oDragonHack/python
 
+## Android apk
+https://www.dropbox.com/s/vr5nifc52d0gliq/app-dev-debug.apk?dl=0
+
 ##  Dev console:
 
 1. Go to http://sprint-app.4thoffice.com/login and login with your Gmail or Exchange account
