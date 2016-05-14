@@ -69,7 +69,7 @@ def actionable_resource_availability():
     return json.dumps(response, default=json_util.default), 200, {'Content-Type': 'application/vnd.4thoffice.actionable.resource.availability-v5.15+json'}
 
 
-@bp.route('/actionableResource', methods=['POST'])
+@bp.route('/action', methods=['POST'])
 def set_action():
     data = json.loads(request.data.decode('utf-8'))
 
