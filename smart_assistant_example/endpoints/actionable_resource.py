@@ -41,7 +41,7 @@ def actionable_resource(actionable_resource_id=None):
         return '', 204
 
     response = actionable_resource.to_json()
-    return json.dumps(response, default=json_util.default), 200, {'Content-Type': 'application/vnd.4thoffice.actionable.resource-v5.17+json'}
+    return json.dumps(response, default=json_util.default), 200, {'Content-Type': 'application/vnd.4thoffice.actionable.resource-v5.18+json'}
 
 
 @bp.route('/actionableResource/availability', methods=['GET'])
@@ -79,4 +79,4 @@ def set_action():
     action = action_from_json(data['ActionList'][0])
     actionable_resource = action()
     response = actionable_resource.to_json()
-    return json.dumps(response, default=json_util.default), 200, {'Content-Type': 'application/vnd.4thoffice.actionable.resource-v5.17+json'}
+    return json.dumps(response, default=json_util.default), 200, {'Content-Type': 'application/vnd.4thoffice.actionable.resource-v5.18+json'}
