@@ -1,5 +1,5 @@
 API_4O = {
-    'URL': 'https://sprint-app.4thoffice.com/api'
+    'URL': 'https://clean-sprint-app.4thoffice.com/api'
 }
 
 SMART_ASSISTANT = {
