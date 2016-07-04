@@ -9,9 +9,9 @@ SMART_ASSISTANT = {
     },
 
     'AUTH': {
-        'KEY': '4obot.demo@gmail.com',
-        'SECRET': '+1bAEYqATHhPmsY3k5eFOBkLoAxtLe7Xbjr+cOgFG/gvi1uOMCBg2To0AzK0dWVXcq0='
+        'KEY': '1cd65bd6-fd85-4a80-8e1c-3263c0793bdf@4thoffice.com',
+        'SECRET': '31b38f06-50f8-3c0f-92c2-036bbac2fbb6'
     },
 
-    'NAME': 'DragonHackExample'
+    'NAME': 'LondonChallengeExample'
 }
