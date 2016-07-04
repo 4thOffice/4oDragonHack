@@ -11,6 +11,6 @@ class ActionableResource:
         return {
             'DescriptionList': self.description_list,
             'ActionList': [action.to_json() for action in self.actions],
-            '$type': 'ActionableResource_21',
+            '$type': 'ActionableResource_22',
             'Id': str(uuid.uuid4())
         }
