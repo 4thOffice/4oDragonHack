@@ -1,11 +1,4 @@
-# 4oDragonHack/python
-
-## Android apk
-https://www.dropbox.com/s/vr5nifc52d0gliq/app-dev-debug.apk?dl=0
-
-When you install the app, you will see at the top of the screen red section with 3 checkboxes - make sure that "Sprint" is selected 
-(when you select Sprint you need to kill the app to apply the setting).
-
+# LondonChallenge/python
 
 ##  Dev console:
 
