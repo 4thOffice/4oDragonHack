@@ -43,8 +43,8 @@ def create_card(to_user_email, title, content, attachment_names_ids=None):
     response = requests.post(
         url=url,
         headers={
-            'Content-Type': 'application/vnd.4thoffice.post-5.15+json',
-            'Accept': 'application/vnd.4thoffice.post-5.15+json',
+            'Content-Type': 'application/vnd.4thoffice.post-5.18+json',
+            'Accept': 'application/vnd.4thoffice.post-5.18+json',
             'Accept-Encoding': 'gzip, deflate',
             'Accept-Language': 'en-US;q=1',
             'Authorization': access_token
@@ -76,8 +76,8 @@ def post_to_existing_card(card_id, content, attachment_names_ids=None):
     response = requests.post(
         url=url,
         headers={
-            'Content-Type': 'application/vnd.4thoffice.post-5.15+json',
-            'Accept': 'application/vnd.4thoffice.post-5.15+json',
+            'Content-Type': 'application/vnd.4thoffice.post-5.18+json',
+            'Accept': 'application/vnd.4thoffice.post-5.18+json',
             'Accept-Encoding': 'gzip, deflate',
             'Accept-Language': 'en-US;q=1',
             'Authorization': access_token
