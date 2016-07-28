@@ -138,9 +138,20 @@ def example_get_groups_of_user(user):
 
 def example_post_new_card_html(user):
     title = 'Welcome!'
-    content = '<html><head><title>Title</title></head><body><b>test</b></body></html>'
 
-    response = create_card_html(user.email, title, content)
+    file_name = '4thOffice.png'
+    document_path = '{}{}{}'.format(os.path.dirname(os.path.abspath(__file__)), os.sep, file_name)
+    response = post_attachment(file_name, document_path)
+    if not 200 < response.status_code < 300:
+        response.raise_for_status()
+
+    attachment_id = json.loads(response.text)['Id']
+    inline_attachment_names_ids = [(file_name, attachment_id)]
+
+    content = '<html><head><title>Title</title></head><body><b>test with image</b><br />' \
+              '<img src="cid:{}" /></body></html>'.format(attachment_id)
+
+    response = create_card_html(user.email, title, content, inline_attachment_ids=inline_attachment_names_ids)
 
     if not 200 < response.status_code < 300:
         response.raise_for_status()
@@ -152,8 +163,18 @@ def example_post_new_card_html(user):
 def example_post_to_existing_card_html(user):
     data = example_post_new_card(user)
     card_id = data['Parent']['Id']
-    content = '<html><head><title>Title</title></head><body><b>test</b></body></html>'
-    response = post_to_existing_card_html(card_id, content)
+    file_name = '4thOffice.png'
+    document_path = '{}{}{}'.format(os.path.dirname(os.path.abspath(__file__)), os.sep, file_name)
+    response = post_attachment(file_name, document_path)
+    if not 200 < response.status_code < 300:
+        response.raise_for_status()
+
+    attachment_id = json.loads(response.text)['Id']
+    inline_attachment_names_ids = [(file_name, attachment_id)]
+
+    content = '<html><head><title>Title</title></head><body><b>test with image</b><br />' \
+              '<img src="cid:{}" /></body></html>'.format(attachment_id)
+    response = post_to_existing_card_html(card_id, content, inline_attachment_ids=inline_attachment_names_ids)
 
     if not 200 < response.status_code < 300:
         response.raise_for_status()
@@ -200,7 +221,7 @@ def example_get_chat_messages(user):
 
 
 if __name__ == '__main__':
-    user_email = 'gaspertestz@gmail.com'
+    user_email = 'kaja@marg.si'
     user = User(example_get_user_by_email(user_email))
 
     #example_send_push_notification(user)
@@ -216,12 +237,12 @@ if __name__ == '__main__':
     #stream_id = example_get_streams_of_user(user)
     #example_get_stream(user.id, stream_id)
 
-  #  group_id = example_get_groups_of_user(user)
-  #  example_get_group(user.id, group_id)
+    #group_id = example_get_groups_of_user(user)
+    #example_get_group(user.id, group_id)
 
-    #example_post_to_existing_card_html(user)
+    example_post_to_existing_card_html(user)
 
-    #example_post_new_card_html(user)
+    example_post_new_card_html(user)
 
-    print(example_get_cards_of_stream(user))
-    print(example_get_messages_of_a_card(user))
+    #print(example_get_cards_of_stream(user))
+    #print(example_get_messages_of_a_card(user))
