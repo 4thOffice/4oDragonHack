@@ -15,6 +15,9 @@
 ## API
 http://clean-sprint-app.4thoffice.com/api
 
+## Data contract
+https://github.com/4thOffice/4thOfficeClient/blob/master/src/DataContract/ApiDataContract.xsd
+
 ### Major endpoints
 
 Name: "User_14"
@@ -246,12 +249,12 @@ Methods:
       IsList: false
 
 - 
-Name: "Post_20"
+Name: "Post_22"
 Description: "Post."
 Href: "post/{postId}"
 ContentTypes: 
-- "application/vnd.4thoffice.post-5.15+xml"
-- "application/vnd.4thoffice.post-5.15+json"
+- "application/vnd.4thoffice.post-5.18+xml"
+- "application/vnd.4thoffice.post-5.18+json"
 Methods: 
 - 
   Type: "OPTIONS"
