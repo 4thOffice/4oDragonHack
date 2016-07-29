@@ -2,7 +2,7 @@ import json
 import os
 
 from API_4o.card import create_card, post_to_existing_card, post_attachment, get_user_chat_id, create_card_html, \
-    post_to_existing_card_html
+    post_to_existing_card_html, create_card_with_impersonation
 from API_4o.get_data import get_user_by_email, get_stream, get_group, get_streams_of_user, get_cards_of_stream, \
     get_chat_messages, get_messages_of_a_card
 from API_4o.push_notification import send_push_notification
@@ -37,6 +37,19 @@ def example_post_new_card(user):
     content = 'Hello {}, this is me, your smart assistant'.format(user.first_name)
 
     response = create_card(user.email, title, content)
+
+    if not 200 < response.status_code < 300:
+        response.raise_for_status()
+
+    data = json.loads(response.text)
+    return data
+
+
+def example_post_new_card_with_impersonation(user, user_to_impersonate_id):
+    title = 'Welcome!'
+    content = 'Hello {}, this is an impersonated message'.format(user.first_name)
+
+    response = create_card_with_impersonation(user.email, title, content, user_to_impersonate_id)
 
     if not 200 < response.status_code < 300:
         response.raise_for_status()
@@ -228,6 +241,8 @@ if __name__ == '__main__':
 
     #example_post_new_card(user)
 
+    example_post_new_card_with_impersonation(user, user.id)
+
     #example_post_to_existing_card(user)
 
     #example_post_with_attachment(user)
@@ -240,9 +255,9 @@ if __name__ == '__main__':
     #group_id = example_get_groups_of_user(user)
     #example_get_group(user.id, group_id)
 
-    example_post_to_existing_card_html(user)
+    #example_post_to_existing_card_html(user)
 
-    example_post_new_card_html(user)
+    #example_post_new_card_html(user)
 
     #print(example_get_cards_of_stream(user))
     #print(example_get_messages_of_a_card(user))

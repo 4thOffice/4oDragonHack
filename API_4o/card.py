@@ -54,6 +54,56 @@ def create_card(to_user_email, title, content, attachment_names_ids=None):
 
     return response
 
+def create_card_with_impersonation(to_user_email, title, content, user_id, attachment_names_ids=None):
+    """
+
+    :param to_user_email:
+    :param title:
+    :param content:
+    :param attachment_names_ids: tuple: (name, id)
+    :return:
+    """
+    data = {
+            'Name': title,
+            'Text': content,
+            'ShareList': [
+                {
+                    '$type': 'User_14',
+                    'AccountList': [
+                        {
+                            '$type': 'AccountEmail_14',
+                            'Email': to_user_email
+                        }
+                    ]
+                }
+            ]
+        }
+    if attachment_names_ids:
+        data['Files'] = [
+                {
+                    '$type': 'File_14',
+                    'Id': attachment_id,
+                    'Name': attachment_name
+                } for attachment_name, attachment_id in attachment_names_ids
+            ]
+
+    url = '{}/post'.format(config.API_4O['URL'])
+
+    response = requests.post(
+        url=url,
+        headers={
+            'Content-Type': 'application/vnd.4thoffice.post-5.18+json',
+            'Accept': 'application/vnd.4thoffice.post-5.18+json',
+            'Accept-Encoding': 'gzip, deflate',
+            'Accept-Language': 'en-US;q=1',
+            'Authorization': access_token,
+            'X-Impersonate-User': user_id
+        },
+        data=json.dumps(data)
+    )
+
+    return response
+
 
 def post_to_existing_card(card_id, content, attachment_names_ids=None):
     data = {
