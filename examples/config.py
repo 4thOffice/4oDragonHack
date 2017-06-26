@@ -1,3 +1,5 @@
-API_URL = 'https://clean-sprint-app.4thoffice.com/api'
-INTEGRATION_KEY = '1cd65bd6-fd85-4a80-8e1c-3263c0793bdf@4thoffice.com'
-INTEGRATION_SECRET = '31b38f06-50f8-3c0f-92c2-036bbac2fbb6'
+#API_URL = 'https://clean-sprint-app.4thoffice.com/api'
+API_URL = 'http://localhost:8182'
+INTEGRATION_KEY = '8ebe37e1-3ff0-4469-b04a-4e15aa515da4@4thoffice.com'
+INTEGRATION_SECRET = '2c4dfdd4-a827-b8fd-908e-006583aea473'
+API_USER_AGENT ='the-best-integration-1.0'

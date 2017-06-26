@@ -28,4 +28,5 @@ C# SDK is available on demand (just ask Kaja or Simon if you want it).
 5. If you will use actions enter the URL of your server (can be done later)
 6. Add webhooks for endpoint (if you are using actions, can also be done later): 
     - POST action 
-7. Look at examples in this repository
+7. Look at examples in this repository (every example has HTTP and Python SDK example)
+8. If you will need to access other users (e.g. impersonate them), send your API KEY to Kaja
