@@ -30,3 +30,9 @@ C# SDK is available on demand (just ask Kaja or Simon if you want it).
     - POST action 
 7. Look at examples in this repository (every example has HTTP and Python SDK example)
 8. If you will need to access other users (e.g. impersonate them), send your API KEY to Kaja
+
+## Impersonation
+Since you are using a sandbox environment, we allow impersonation of users. 
+That means you can create posts, get the content of those users etc. To use impersonation
+ALWAYS set the `X-Impersonate-User` HTTP header. 
+The SDKs do that for you, if you pass it as a parameter (look at examples)
