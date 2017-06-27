@@ -81,13 +81,13 @@ def create_action_sdk(action_id, action_name, post_id, impersonate_user_id):
 
     reminder_obj = classes.Reminder_22()
     reminder_obj.set_Resource(post_obj)
-    reminder_obj.set_ActionList(actions)
+    reminder_obj.set_ActionList(classes.ListOfActions_18(actions))
 
     response = api_client.reminder.Reminder_22.create(reminder_obj, impersonate_user_id=impersonate_user_id)
     return response
 
 
-def delete_action_http(reminderId, impersonate_user_id):
+def delete_action_sdk(reminderId, impersonate_user_id):
     api_client = ApiClient(username=config.INTEGRATION_KEY,
                            password=config.INTEGRATION_SECRET,
                            auth_type=7,

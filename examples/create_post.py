@@ -175,7 +175,7 @@ def create_card_sdk(to_user_email, title, content, attachment_names_ids=None):
             file = classes.File_14()
             file.set_Id(attachment_id)
             files.append(file)
-    post_obj.set_Files(classes.ListOfFiles_14(files))
+        post_obj.set_Files(classes.ListOfFiles_14(files))
     post_obj.set_Name(title)
     created_post = api_client.post.Post_22.create(post_obj)
 
@@ -198,7 +198,7 @@ def create_card_html_sdk(to_user_email, title, content, attachment_names_ids=Non
             file = classes.File_14()
             file.set_Id(attachment_id)
             files.append(file)
-    post_obj.set_Files(classes.ListOfFiles_14(files))
+        post_obj.set_Files(classes.ListOfFiles_14(files))
     post_obj.set_Name(title)
     created_post = api_client.post.Post_22.create(post_obj)
 
