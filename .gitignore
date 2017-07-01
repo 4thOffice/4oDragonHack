@@ -4,3 +4,5 @@
 .idea/modules.xml
 .idea/workspace.xml
 *.pyc
+dotNetExamples/Examples/Examples/bin/
+dotNetExamples/Examples/Examples/obj/
