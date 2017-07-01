@@ -13,6 +13,7 @@ namespace Examples
     {
       using (var webServiceClient = new WebServiceClient(Config.ApiUrl, accessToken))
       {
+        webServiceClient.AddHttpHeader(HttpHeader.XImpersonateUser, impersonateUserId);
         var post = new Post_22 { Id = postId };
         var action = new Action_18
         {
@@ -28,10 +29,11 @@ namespace Examples
       }
     }
 
-    public static async Task DeleteActionsAsync(string reminderId, string accessToken)
+    public static async Task DeleteActionsAsync(string reminderId, string impersonateUserId, string accessToken)
     {
       using (var webServiceClient = new WebServiceClient(Config.ApiUrl, accessToken))
       {
+        webServiceClient.AddHttpHeader(HttpHeader.XImpersonateUser, impersonateUserId);
         await webServiceClient.DeleteReminderAsync<Reminder_22>(reminderId);
       }
     }
