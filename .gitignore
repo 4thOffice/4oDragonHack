@@ -6,3 +6,4 @@
 *.pyc
 dotNetExamples/Examples/Examples/bin/
 dotNetExamples/Examples/Examples/obj/
+dotNetExamples/Examples/.vs/Examples/v15/.suo
