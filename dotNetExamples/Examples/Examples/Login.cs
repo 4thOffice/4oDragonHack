@@ -9,7 +9,7 @@ namespace Examples
 {
   public static class Login
   {
-    public static async Task<string> LoginUserAsync()
+    public static string LoginUser()
     {
       var clientApplication = new ClientApplication_14
       {
@@ -28,8 +28,7 @@ namespace Examples
       var logOnUserV14 = new LogOnUser_14 { Authentication = authentication, ClientApplication = clientApplication };
       using (var webServiceClient = new WebServiceClient(Config.ApiUrl, logOnUserV14))
       {
-        var user = await webServiceClient.GetLoggedUserAsync();
-        return user.Token.AccessToken;
+        return webServiceClient.AccessToken;
       }
     }
   }
