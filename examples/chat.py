@@ -57,5 +57,18 @@ def get_chat_id_for_email_sdk(email_address):
     return response.Id
 
 
+def get_user_id_for_email_sdk(email_address):
+    api_client = ApiClient(username=config.INTEGRATION_KEY,
+                           password=config.INTEGRATION_SECRET,
+                           auth_type=7,
+                           api_url=config.API_URL)
+
+    user = create_post.create_user_object_from_email(email_address)
+    stream_user = classes.StreamUser_22(User=user)
+
+    response = api_client.stream.StreamUser_22.create(stream_user)
+    return response.User.Id
+
+
 def post_to_chat_sdk(chat_id, content):
     create_post.create_reply_sdk(chat_id, content)
