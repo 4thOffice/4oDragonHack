@@ -232,3 +232,37 @@ def create_user_object_from_email(email):
             classes.AccountEmail_14(email)
         ])
     )
+
+
+def create_group_object_from_id(group_id):
+    group = classes.Group_17()
+    group.set_Id(group_id)
+    return group
+
+
+def create_card_html_to_group_with_share_only_members(group_id,
+                                                      to_user_email,
+                                                      title,
+                                                      content,
+                                                      attachment_names_ids=None):
+    api_client = ApiClient(username=config.INTEGRATION_KEY,
+                           password=config.INTEGRATION_SECRET,
+                           auth_type=7,
+                           api_url=config.API_URL)
+    share_list = []
+    share_list.append(create_user_object_from_email(to_user_email))
+    share_list.append(create_group_object_from_id(group_id))
+    share_list = classes.ListOfResources_13(share_list)
+
+    post_obj = classes.Post_22(BodyHtml=content, ShareList=share_list)
+    if attachment_names_ids:
+        files = []
+        for attachment_id in attachment_names_ids:
+            file = classes.File_14()
+            file.set_Id(attachment_id)
+            files.append(file)
+        post_obj.set_Files(classes.ListOfFiles_14(files))
+    post_obj.set_Name(title)
+    created_post = api_client.post.Post_22.create(post_obj)
+
+    return created_post

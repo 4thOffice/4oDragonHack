@@ -34,4 +34,30 @@ def create_group(name, admins=[], members=[], description=None, impersonate_user
     return group
 
 
-get_groups_for_user()
+def create_group_with_share_only_members(name,
+                                         admins=[],
+                                         members=[],
+                                         share_only_members=[],
+                                         description=None,
+                                         impersonate_user_id=None):
+    api_client = ApiClient(username=config.INTEGRATION_KEY,
+                           password=config.INTEGRATION_SECRET,
+                           auth_type=7,
+                           api_url=config.API_URL)
+    group_obj = classes.Group_17(Description=description)
+    group_obj.set_Name(name)
+    admin_list = []
+    member_list = []
+    share_only_member_list = []
+    for email in admins:
+        admin_list.append(create_user_object_from_email(email))
+    for email in members:
+        member_list.append(create_user_object_from_email(email))
+    for email in share_only_members:
+        share_only_member_list.append(create_user_object_from_email(email))
+    group_obj.set_Administrators(classes.ListOfUsers_14(admin_list))
+    group_obj.set_Members(classes.ListOfUsers_14(member_list))
+    group_obj.set_ShareOnlyMembers(classes.ListOfUsers_14(share_only_member_list))
+    group = api_client.group.Group_17.create(group_obj, impersonate_user_id=impersonate_user_id)
+    return group
+

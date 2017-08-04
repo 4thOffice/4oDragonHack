@@ -8,4 +8,5 @@ bostjan_html = 'Normal text <br /><br /><a href="http://google.com" style="backg
                'border: none; color: white; padding: 15px 32px; text-align: center; ' \
                'text-decoration: none; display: inline-block; font-size: 16px;">Go to Google</a>'
 
-create_post.create_card_html_sdk('kajajtest@outlook.com', 'test1', bostjan_html)
+create_post.create_card_html_to_group_with_share_only_members('BTrdr5uoC1G52e51951b6c74c5082cb0523127b236b','lenko.smrkci@gmail.com', 'test1', bostjan_html)
+a=2
